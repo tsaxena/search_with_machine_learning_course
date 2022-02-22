@@ -1,0 +1,16 @@
+Get all indices
+================
+
+curl -XGET \
+-k \
+-u 'admin:admin' 'https://localhost:9200/_cat/indices' \
+-H 'Content-Type: application/json'
+
+
+Get number of records with department = 'COMPUTERS' 
+===================================================
+curl -XPOST \
+-k \
+-H 'Content-Type: application/json' \
+-u 'admin:admin' 'https://localhost:9200/bbuy_products/_search' \
+-d '{   "size": 0,"query": {"bool": {"must": [{"match_all": {}}],"filter": []}},"aggs": {"department": {"terms": {"field": "department.keyword"}}}}'
